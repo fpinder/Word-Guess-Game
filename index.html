@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,17 +11,83 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
     <title>Word Guess Game</title>
-    
-    
-</head>
-<body>
-       <h1>Guess what letter I'm thinking of</h1>
-       <script>
 
-        console.log ("This is the letter selected by the computer " + randLetter());
-        document.write ("This is the letter " + randLetter())
+
+</head>
+
+<body>
+    <b><h1 style="font-size: 25px;" >The Psychic Game</h1></b>
+<br />
+
+    <div>
+        <p id="directions-text">Guess what letter I'm thinking of</p> <br />
+        <p id="computerchoice-text"></p> <br />
+        <p id="wins-text"></p> <br />
+        <p id="losses-text"></p> <br />
+        <p id="GuessLeft-text"></p> <br />
+        <p id="userchoice-text"></p> <br />
+    </div>
+
+
+
+    <script type="text/javascript">
+
+    // if the browser does not support scripts 
+    //  <noscript>Sorry, your browser does not support JavaScript!</noscript>
+
+        var wins = 0;
+        var losses = 0;
+        var GuessLeft = 9;
+        var Guesses = [];
+
+        var directionsText = document.getElementById("directions-text");
+        var userChoiceText = document.getElementById("userchoice-text");
+        var computerChoiceText = document.getElementById("computerchoice-text");
+        var winsText = document.getElementById("wins-text");
+        var lossesText = document.getElementById("losses-text");
+        var GuessLeftText = document.getElementById("GuessLeft-text");
+        var computerGuess = randLetter(); 
        
-        </script>
-     
+        // called to display the initial values 
+         start();
+       
+
+        document.onkeyup = function (event) {
+            var userGuess = event.key;
+
+            if (userGuess === computerGuess) {
+                wins++;
+                Guesses = [];
+                GuessLeft = 9;
+                computerGuess = randLetter();
+                // choose A NEW LETTER
+            } else if (userGuess !== computerGuess) {
+
+                // if user has no guesses, increase losses, clear guesses array
+                if (GuessLeft == 1) {
+                    losses++;
+                    computerGuess = randLetter();
+                    Guesses = [];
+                    GuessLeft = 9;
+                }else { // decrese guesses push guess to guesses array
+                    GuessLeft--
+                    Guesses.push (userGuess)
+                }             
+
+            }
+            
+            // computerChoiceText.textContent = "The computer guess is: " + computerGuess;
+
+            winsText.textContent = "Wins " + wins;
+            lossesText.textContent = "Losses " + losses;
+            GuessLeftText.textContent = "Guess Left " + GuessLeft;
+            userChoiceText.textContent = "Your Guess so far " + ", " + Guesses.join(", "); 
+
+        };
+
+
+    </script>
+
 </body>
+
 </html>
