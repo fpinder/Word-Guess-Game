@@ -47,6 +47,8 @@
         var lossesText = document.getElementById("losses-text");
         var GuessLeftText = document.getElementById("GuessLeft-text");
         var computerGuess = randLetter(); 
+        // only used for checking 
+        // console.log("The computer guess is: " + computerGuess);
        
         // called to display the initial values 
          start();
@@ -54,7 +56,7 @@
 
         document.onkeyup = function (event) {
             var userGuess = event.key;
-
+            
             if (userGuess === computerGuess) {
                 wins++;
                 Guesses = [];
@@ -77,11 +79,15 @@
             }
             
             // computerChoiceText.textContent = "The computer guess is: " + computerGuess;
-console.log("The computer guess is: " + computerGuess);
+
             winsText.textContent = "Wins " + wins;
             lossesText.textContent = "Losses " + losses;
             GuessLeftText.textContent = "Guess Left " + GuessLeft;
             userChoiceText.textContent = "Your Guess so far " + ", " + Guesses.join(", "); 
+           
+            // only used for checking 
+        // console.log("The computer guess is: " + computerGuess);
+       
 
         };
 
