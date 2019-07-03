@@ -12,5 +12,5 @@ function start() {
     winsText.textContent = "Wins " + wins;
     lossesText.textContent = "Losses " + losses;
     GuessLeftText.textContent = "Guess Left " + GuessLeft;
-    userChoiceText.textContent = "Your Guess so far " + ", " + Guesses.join(", ");
+    userChoiceText.textContent = "Your Guess so far " + Guesses.join(", ");
 }
